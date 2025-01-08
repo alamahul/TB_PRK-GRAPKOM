@@ -18,25 +18,23 @@ float rot = 0;
 
 bool lampu = false;
 
-GLfloat eyeX = 0;
-GLfloat eyeY = 7;
-GLfloat eyeZ = 7;
+float eyeX = 0;
+float eyeY = 7;
+float eyeZ = 7;
 
-GLfloat lookX = 0;
-GLfloat lookY = 7;
-GLfloat lookZ = 0;
+float lookX = 0;
+float lookY = 7;
+float lookZ = 0;
 
-void balok(float merah, float hijau, float biru) {
+void balok(float merah = 0.0, float hijau = 0.0, float biru = 0.0, float kilauan = 0.0) {
     glPushMatrix();
-
-
-	
     // Atur properti material objek
-    GLfloat mat_ambient[] = {merah*0.3, hijau*0.3, biru*0.3, 1.0f}; // Warna ambient
-    GLfloat mat_diffuse[] = {merah, hijau, biru, 1.0f}; // Warna diffuse
-    GLfloat mat_specular[] = {1.0f, 1.0f, 1.0f, 1.0f}; // Warna specular
     
-    GLfloat mat_shininess[] = {50.0f}; // Tingkat kilauan
+    float mat_ambient[] = {merah*0.2, hijau*0.2, biru*0.2, 1.0f}; // Warna ambient
+    float mat_diffuse[] = {merah, hijau, biru, 1.0f}; // Warna diffuse
+    float mat_specular[] = {kilauan, kilauan, kilauan, 1.0f}; // Warna specular
+    
+    float mat_shininess[] = {35.0f}; // Tingkat kilauan
  
      // Atur material objek
     glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
@@ -130,7 +128,7 @@ void AC (){
 	glPushMatrix();
 	glTranslatef(-6.0, 8.0, 0.0);
 	glScalef(1.0, 2.0, 4.0);
-	balok(0.9f, 0.2f, 0.2f);
+	balok(0.9f, 0.2f, 0.2f, 1.0f);
 	glPopMatrix();
 }
 
@@ -170,9 +168,9 @@ void light(){
     
     // Atur posisi sumber cahaya
     GLfloat light_position[] = {0.0f, 10.0f, 0.0f, 1.0f};
-    GLfloat light_ambient[] = {0.2f, 0.2f, 0.2f, 1.0f}; // Warna ambient
-    GLfloat light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f}; // Warna diffuse
-    GLfloat light_specular[] = {0.5f, 0.5f, 0.5f, 0.5f}; // Warna specular
+    GLfloat light_ambient[] = {1.0f, 1.0f, 1.0f, 1.0f}; // Warna ambient
+    GLfloat light_diffuse[] = {0.7f, 0.7f, 0.7f, 1.0f}; // Warna diffuse
+    GLfloat light_specular[] = {1.0f, 1.0f, 1.0f, 1.0f}; // Warna specular
     GLfloat light_off[] = {0.0f, 0.0f, 0.0f, 0.0f}; // lampu mati
     
     
@@ -195,7 +193,7 @@ void display(void)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glFrustum(-3, 3, -3, 3, 2.0, 100.0);
+    gluPerspective(90.0, 1, 2.0, 100.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(eyeX, eyeY, eyeZ, lookX, lookY, lookZ, 0, 1, 0);
@@ -206,7 +204,6 @@ void display(void)
 	}
     
     light();
-    
 	lantai();
 	dinding_kiri();
 	dinding_kanan();
@@ -277,7 +274,7 @@ void myKeyboardFunc( unsigned char key, int x, int y )
 
 void drawText(float x, float y, float z, string text, int fontSize)
 {
-	glColor3ub(0, 255, 255); // ubah waena
+	glColor3ub(255, 255, 255); // ubah warna
 	glPushMatrix();
 	glTranslatef(x, y, z);
 	// Set Ukuran font sesuai dengan paramenter fontsize
