@@ -6,25 +6,25 @@ Alamahul = 98 baris
 //-------------------------------------------------------
 // Ramdhani Sulaeman Burhanudin
 // 2306161
-#include <GL/glut.h>
-#include <iostream>
-#include <GL/freeglut.h>
-using namespace std;
+#include <GL/glut.h> // liberi
+#include <iostream> // input output
+#include <GL/freeglut.h> // antarmuka grafis 3d
+using namespace std;// menggunakan fungsi2 dari namesepec tampa harus menulis prepix
 
-bool varKartesius = false;
+bool varKartesius = false; // untuk menampilkan garis x,y,z
 
-const int width = 600;
-const int height = 800;
+const int width = 600;// lebar ukuran jendela
+const int height = 800;// tinggi ukuran jendela 
 
-float rot = 0;
+float rot = 0; // menyimpan sudut rotasi 
 
-bool lampu = false;
+bool lampu = false;// untuk menyalakan dan mematikan lampu
 
-float eyeX = 0;
+float eyeX = 0;// titik sudut pandang  
 float eyeY = 7;
 float eyeZ = 7;
 
-float lookX = 0;
+float lookX = 0;// untuk menentukan titik arah
 float lookY = 7;
 float lookZ = 0;
 //----------------------------------------------------end
@@ -139,60 +139,61 @@ void pintu (){
 // 2306161
 
 void lantai (){
-	glPushMatrix();
-	glTranslatef(0.0, 0.0, 5.0);
-	glScalef(15.0, 1.0, 25.0);
-	balok(0.2f, 0.2f, 0.2f);
-	glPopMatrix();
+	glPushMatrix(); // untuk menyimpan matrix dari tumpakan stack 
+	glTranslatef(0.0, 0.0, 5.0); // untuk memindahkan objek 
+	glScalef(15.0, 1.0, 25.0); // untuk memperbesr dan memperkecil objek
+	balok(0.2f, 0.2f, 0.2f);// untuk mengubah warna 
+	glPopMatrix(); // untuk mengeluarkan matrix dari tumpakan stack
 }
 
 void dinding_kiri (){
-	glPushMatrix();
-	glTranslatef(-7.0, 5.0, 5.0);
-	glScalef(1.0, 10.0, 25.0);
+	glPushMatrix(); // untuk menyimpan matrix dari tumpakan stack 
+	glTranslatef(-7.0, 5.0, 5.0); // untuk memindahkan objek 
+	glScalef(1.0, 10.0, 25.0); // untuk mengubah warna 
 	balok(1.0f, 1.0f, 1.0f);
 	glPopMatrix();
 }
 
 void dinding_kanan(){
-	glPushMatrix();
-	glTranslatef(7.0, 5.0, 5.0);
-	glScalef(1.0, 10.0, 25.0);
-	balok(1.0f, 1.0f, 1.0f);
+	glPushMatrix(); // untuk menyimpan matrix dari tumpakan stack 
+	glTranslatef(7.0, 5.0, 5.0); // untuk memindahkan objek 
+	glScalef(1.0, 10.0, 25.0); // untuk  mengubah besar kecil
+	balok(1.0f, 1.0f, 1.0f); // untuk mengubah warna 
 	glPopMatrix();
 }
 
 void dinding_belakang(){
-	glPushMatrix();
-	glTranslatef(0.0, 5.0, -7.0);
-	glScalef(15.0, 10.0, 1.0);
-	balok(1.0f, 1.0f, 1.0f);
+	glPushMatrix(); // untuk menyimpan matrix dari tumpakan stack 
+	glTranslatef(0.0, 5.0, -7.0); // untuk memindahkan objek 
+	glScalef(15.0, 10.0, 1.0); // untuk  mengubah besar kecil 
+	balok(1.0f, 1.0f, 1.0f); // untuk mengubah warna 
 	glPopMatrix();
 }
 
 void dinding_depan(){
-	glPushMatrix();
-	glTranslatef(0.0, 5.0, 17.0);
-	glScalef(15.0, 10.0, 1.0);
-	balok(1.0f, 1.0f, 1.0f);
+	glPushMatrix(); // untuk menyimpan matrix dari tumpakan stack 
+	glTranslatef(0.0, 5.0, 17.0); // untuk memindahkan objek 
+	glScalef(15.0, 10.0, 1.0); // untuk  mengubah besar kecil
+	balok(1.0f, 1.0f, 1.0f); // untuk mengubah warna 
 	glPopMatrix();
 }
 
 void atap (){
-	glPushMatrix();
-	glTranslatef(0.0, 10.0, 5.0);
-	glScalef(15.0, 1.0, 25.0);
-	balok(1.0f, 1.0f, 1.0f);
+	glPushMatrix(); // untuk menyimpan matrix dari tumpakan stack 
+	glTranslatef(0.0, 10.0, 5.0); // untuk memindahkan objek 
+	glScalef(15.0, 1.0, 25.0); // untuk  mengubah besar kecil
+	balok(1.0f, 1.0f, 1.0f); // untuk mengubah warna 
 	glPopMatrix();
 }
 
 void bor (){
-	glPushMatrix();
-	glTranslatef(0.0, 5.0, -6.5);
-	glScalef(6.0, 5.0, 0.5);
-	balok(0.8f, 0.8f, 0.8f, 0.7f);
+	glPushMatrix(); // untuk menyimpan matrix dari tumpakan stack 
+	glTranslatef(0.0, 5.0, -6.5); // untuk memindahkan objek 
+	glScalef(6.0, 5.0, 0.5); // untuk  mengubah besar kecil 
+	balok(0.8f, 0.8f, 0.8f, 0.7f); // untuk mengubah warna 
 	glPopMatrix();
 }
+
 
 //-------------------------------------------------------
 // Agna Fadia
@@ -206,15 +207,17 @@ void AC (){
 	glPopMatrix();
 }
 
+
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(90.0, 1, 2.0, 100.0);
+    gluPerspective(90.0, 1, 2.0, 100.0); // menciptakan ilusi kedalaman proyeksi 3D realistis pada layar 2D
+	// sudut pandang, rasio, zoom,  
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(eyeX, eyeY, eyeZ, lookX, lookY, lookZ, 0, 1, 0);
+    gluLookAt(eyeX, eyeY, eyeZ, lookX, lookY, lookZ, 0, 1, 0); // menentukkan kamera, sebuah posisi kamera, arahnya kemna, apset 
     glRotatef(rot, 0, 1, 0);
     if (varKartesius == true ){
     	drawCartecius();
@@ -229,45 +232,47 @@ void display(void)
 	pintu();
 	bor ();
 	AC(); 
-    glutSwapBuffers();
+    glutSwapBuffers();// menukar posisi layar depan belakang
 }
 
-void myKeyboardFunc( unsigned char key, int x, int y )
+void myKeyboardFunc( unsigned char key, int x, int y ) // fungsi menangkap keyboard ditekan
 {
 	
     switch ( key )
     {
-    case 'q':
+    case 'q': // kanan
     	rot++;
         break;
-    case 'e':
+    case 'e': // kiri
         rot--;
         break;	
-    case 'd':
+    case 'd': // kanan 
     	eyeX++;
     	lookX++;
         break;
-    case 'a':
+    case 'a': // kiri
         eyeX--;
     	lookX--;
         break;
-    case 'w':
+    case 'w': //atas
         eyeY++;
         lookY++;
         break;
-    case 's':
+    case 's': //bawah
         eyeY--;
         lookY--;
         break;
-    case 'z':
+    case 'z': // mundur, jauh
         eyeZ++;
         lookZ++;
         break;
-    case 'x':
+    case 'x': // maju, dekat
         eyeZ--;
         lookZ--;
         break;
 	case 'k':
+		// jika variabel kartesiusnya false, ketika mengetik k, maka variabel true 
+		// selain dari itu variabel kartesiusnya false
 		if (varKartesius == false){
 			varKartesius = true;
 		}else{
@@ -282,7 +287,7 @@ void myKeyboardFunc( unsigned char key, int x, int y )
 		}
 		break;
 	}
-   glutPostRedisplay();
+   glutPostRedisplay(); // menampilkan display terus menerus
 }
 //----------------------------------------------------end
 
@@ -292,17 +297,17 @@ void myKeyboardFunc( unsigned char key, int x, int y )
 
 int main (int argc, char **argv)
 {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowPosition(0,0);
-    glutInitWindowSize(height, width);
-    glutCreateWindow("Ruangan Kelas TB");
-    glShadeModel( GL_SMOOTH );
-    glEnable( GL_DEPTH_TEST );
-    glEnable( GL_NORMALIZE );
-    glutKeyboardFunc(myKeyboardFunc);
-    glutDisplayFunc(display);
-    glutMainLoop();
+    glutInit(&argc, argv); // memasukan opengl ke terminal agar opengl berfungsi
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // mematikan 
+    glutInitWindowPosition(0,0); // menentukan posisi windows
+    glutInitWindowSize(height, width); // menentukan ukuran windows
+    glutCreateWindow("Ruangan Kelas TB"); // menentukan nama dari window
+    glShadeModel( GL_SMOOTH ); // Memperbaiki gradasi warna dari beberapa warna
+    glEnable( GL_DEPTH_TEST ); // mengaktifkan kedalaman
+    glEnable( GL_NORMALIZE ); // menormalkan vektor yang sudah di transformasi
+    glutKeyboardFunc(myKeyboardFunc); // Memangktifkan fungsi keyboard
+    glutDisplayFunc(display); //  mengaktifkan layar dari fungsi display
+    glutMainLoop(); // loop utama dari main.
     return 0;
 }
 
